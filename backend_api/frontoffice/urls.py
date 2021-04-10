@@ -1,7 +1,11 @@
 from django.urls import path
 
-from .views import Token
+from .views import (LoginAPIView, RegistrationAPIView, UserRetrieveUpdateAPIView)
 
+
+app_name = 'frontoffice'
 urlpatterns = [
-    path('login', Token.as_view()),
+    path('user', UserRetrieveUpdateAPIView.as_view()),
+    path('users/', RegistrationAPIView.as_view()),
+    path('users/login/', LoginAPIView.as_view()),
 ]
