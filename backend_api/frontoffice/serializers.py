@@ -101,7 +101,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password', 'token',)
+        fields = ('email', 'username', 'password', 'token', 'created_at', 'updated_at', 'is_staff')
 
         # Параметр read_only_fields является альтернативой явному указанию поля
         # с помощью read_only = True, как мы это делали для пароля выше.
@@ -109,7 +109,7 @@ class UserSerializer(serializers.ModelSerializer):
         # состоит в том, что нам не нужно ничего указывать о поле. В поле
         # пароля требуются свойства min_length и max_length,
         # но это не относится к полю токена.
-        read_only_fields = ('token',)
+        read_only_fields = ('token', 'created_at', 'updated_at', 'is_staff')
 
     def update(self, instance, validated_data):
         """ Выполняет обновление User. """
