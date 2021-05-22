@@ -124,3 +124,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = 'http://localhost:3000',
+
+# Рассказать Django о созданной нами кастомной модели пользователя. Строка
+# frontoffice.User сообщает Django, что мы ссылаемся на модель User в модуле
+# frontoffice. Этот модуль зарегистрирован выше в настройке INSTALLED_APPS.
+AUTH_USER_MODEL = 'frontoffice.User'
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'frontoffice.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'frontoffice.backends.JWTAuthentication',
+    ),
+}
